@@ -222,6 +222,11 @@ char **getcgivars(void) {
 	paircount = 0;
 	nvpair = strtok(cgiinput, "&");
 	while(nvpair) {
+		/* NagFormId must come from a cookie - skip any attempt to set it by other means */
+		if (strstr(nvpair, "NagFormId=")){
+			nvpair = strtok(NULL, "&");
+			continue;
+			}
 		pairlist[paircount] = strdup(nvpair);
 		if( NULL == pairlist[paircount]) {
 			printf("getcgivars(): Could not allocate memory for name-value pair #%d.\n", paircount);
