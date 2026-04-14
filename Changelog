@@ -2,7 +2,7 @@
 Nagios Core 4 Change Log
 ########################
 
-4.5.13 - 2026-xx-xx
+4.5.13 - 2026-04-27
 -------------------
 * Add cgi_cookie_fail_open config option that allows for third-party integrations to use cmd.cgi (Emmett Kapsner)
 * Fix vulnerabilities in CSRF cookie in cmd.cgi (Thanks SeungMyung Lee) (Emmett Kapsner)
