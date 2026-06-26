@@ -222,8 +222,10 @@ char **getcgivars(void) {
 	paircount = 0;
 	nvpair = strtok(cgiinput, "&");
 	while(nvpair) {
+		unescape_cgi_input(nvpair);
+
 		/* NagFormId must come from a cookie - skip any attempt to set it by other means */
-		if (strstr(nvpair, "NagFormId=")){
+		if (strncmp(nvpair, "NagFormId=", 10) == 0){			/* 10 is the length of NagFormId= */
 			nvpair = strtok(NULL, "&");
 			continue;
 			}
@@ -296,7 +298,6 @@ char **getcgivars(void) {
 				printf("getcgivars(): Could not allocate memory for cgi value #%d.\n", i);
 				exit(1);
 				}
-			unescape_cgi_input(cgivars[i * 2 + 1]);
 			}
 		else {
 			cgivars[i * 2 + 1] = strdup("");
@@ -304,7 +305,6 @@ char **getcgivars(void) {
 				printf("getcgivars(): Could not allocate memory for empty stringfor variable value #%d.\n", i);
 				exit(1);
 				}
-			unescape_cgi_input(cgivars[i * 2 + 1]);
 			}
 
 		/* get the variable value (or name/value of there was no real "pair" in the first place) */
@@ -313,7 +313,6 @@ char **getcgivars(void) {
 			printf("getcgivars(): Could not allocate memory for cgi name #%d.\n", i);
 			exit(1);
 			}
-		unescape_cgi_input(cgivars[i * 2]);
 		}
 
 	/* terminate the name-value list */
