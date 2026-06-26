@@ -1130,7 +1130,7 @@ illegal_object_name_chars=`~!$%^&*|'"<>?,()=
 # This option allows you to specify illegal characters that are
 # stripped from macros before being used in notifications, event
 # handlers, etc.  This DOES NOT affect macros used in service or
-# host check commands.
+# host check commands with the exemption of custom variables.
 # The following macros are stripped of the characters you specify:
 #	$HOSTOUTPUT$
 #	$LONGHOSTOUTPUT$
@@ -1142,6 +1142,10 @@ illegal_object_name_chars=`~!$%^&*|'"<>?,()=
 #	$SERVICEPERFDATA$
 #	$SERVICEACKAUTHOR$
 #	$SERVICEACKCOMMENT$
+#	$NOTIFICATIONAUTHOR$
+#	$NOTIFICATIONAUTHORNAME$
+#	$NOTIFICATIONAUTHORALIAS$
+#	$NOTIFICATIONCOMMENT$
 
 illegal_macro_output_chars=`~$&|'"<>
 
