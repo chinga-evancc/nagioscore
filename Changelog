@@ -4,6 +4,7 @@ Nagios Core 4 Change Log
 
 4.5.14 - 2026-xx-xx
 -------------------
+* Fix vulnerabilities in notification macros, which are now being sanitized (Thanks Zach Hanley of Horizon3.ai) (Emmett Kapsner)
 * Fix vulnerabilities in jsonquery.js (Thanks Zach Hanley of Horizon3.ai) (Emmett Kapsner)
 * Fix reflected XSS in cmd.cgi (Thanks Zach Hanley of Horizon3.ai) (Emmett Kapsner)
 * Fix vulnerabilities in CSRF cookie (Thanks Zach Hanley of Horizon3.ai) (Emmett Kapsner)
