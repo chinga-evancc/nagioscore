@@ -295,7 +295,7 @@ void set_cookie() {
 			exit(1);
 		}
 
-		printf("Set-Cookie: NagFormId=%s; SameSite=Strict\r\n", cookie_form_id);
+		printf("Set-Cookie: NagFormId=%s; SameSite=Strict; HttpOnly\r\n", cookie_form_id);
 	}
 }
 
@@ -716,6 +716,7 @@ int process_cgivars(void) {
 			}
 
 			cookie_form_id = (char*)strdup(variables[x]);
+			strip_html_brackets(cookie_form_id);
 		}
 
 		/* we found the form id on the form */
