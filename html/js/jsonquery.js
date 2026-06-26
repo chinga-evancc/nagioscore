@@ -554,7 +554,7 @@ $( document).ready( function() {
 				parameters, 
 				function(data, results) {
 					$('#results').append( 
-						$('<p></p>').html( objectToString( 0, data))
+						$('<pre></pre>').text( JSON.stringify(data, null, 2))
 					);
 				}
 			);
