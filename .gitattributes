@@ -1,0 +1,10 @@
+# Keep LF line endings on every platform: the autotools scripts, Makefiles,
+# and shell entrypoints break under CRLF (e.g. "./configure: not found" when
+# building the Docker image from a Windows checkout).
+* text=auto eol=lf
+
+*.png binary
+*.gif binary
+*.jpg binary
+*.ico binary
+*.gz binary

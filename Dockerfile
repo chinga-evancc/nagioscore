@@ -29,8 +29,15 @@ RUN groupadd -r nagios \
 WORKDIR /src
 COPY . .
 
+# A checkout made on Windows may have CRLF line endings and no exec bits,
+# which breaks every shell script ("./configure: not found"). Normalise the
+# tree before building so the image builds identically on any host OS.
+RUN grep -rlI --exclude-dir=images "$(printf '\r')" . | xargs -r sed -i 's/\r$//' \
+    && chmod +x configure config.guess config.sub install-sh tap/install-sh \
+        autoconf-macros/* indent.sh indent-all.sh update-version make-tarball mkpackage
+
 RUN mkdir -p /etc/apache2/sites-available /etc/apache2/sites-enabled \
-    && ./configure \
+    && sh ./configure \
         --prefix=/usr/local/nagios \
         --with-nagios-user=nagios \
         --with-nagios-group=nagios \
@@ -84,7 +91,7 @@ RUN rmdir /usr/local/nagios/libexec \
     && chmod 2775 /usr/local/nagios/var/rw
 
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 ENV NAGIOS_ADMIN_USER=nagiosadmin \
     NAGIOS_ADMIN_PASSWORD=nagiosadmin \
