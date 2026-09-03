@@ -1,0 +1,18 @@
+services:
+  nagios:
+    build: .
+    image: nagioscore:local
+    container_name: nagios
+    ports:
+      - "8080:80"
+    environment:
+      NAGIOS_ADMIN_USER: nagiosadmin
+      NAGIOS_ADMIN_PASSWORD: nagiosadmin
+    volumes:
+      - nagios-etc:/usr/local/nagios/etc
+      - nagios-var:/usr/local/nagios/var
+    restart: unless-stopped
+
+volumes:
+  nagios-etc:
+  nagios-var:
