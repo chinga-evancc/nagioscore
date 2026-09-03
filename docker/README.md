@@ -65,6 +65,8 @@ Notes
 -----
 
 * Checks such as `check_ping` run inside the container, so "localhost" in the
-  sample config refers to the container itself.
+  sample config refers to the container itself. The sample "SSH" and
+  "Swap Usage" services report CRITICAL because the container has no sshd
+  or swap; edit or remove them in `objects/localhost.cfg`.
 * The `HEALTHCHECK` reports healthy once the config validates and the
   `nagios` daemon is running.
