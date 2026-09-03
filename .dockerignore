@@ -1,0 +1,10 @@
+.git
+.github
+*.o
+*.a
+base/nagios
+base/nagiostats
+cgi/*.cgi
+worker/ping/ping
+Dockerfile
+docker-compose.yml
